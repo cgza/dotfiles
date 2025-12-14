@@ -8,4 +8,4 @@ opt.relativenumber = true
 opt.scrolloff = 15
 opt.sidescrolloff = 15
 -- opt.title = true
-opt.syntax = "ON"
+-- opt.syntax = "ON"
