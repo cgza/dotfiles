@@ -51,11 +51,26 @@ vim.keymap.set("n", "<leader>tO", open_file_in_tab, { desc = "Open file in new t
 
 -- Delete without yanking
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without yanking" })
+-- Cambio el default delete
+vim.keymap.set({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })
+vim.keymap.set({ "n", "v" }, "dd", '"_dd', { desc = "Delete without yanking" })
+-- Asigno el default delete (with yanking) to Shift-D
+vim.keymap.set({ "n", "v" }, "<S-d>", "d")
+vim.keymap.set({ "n", "v" }, "<S-d><S-d>", "dd")
 
 -- Better Pasting remembering yanked
 vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set("x", "p", [["_dP]])
 
---
+--Mover up-down las líneas seleccionada
+vim.keymap.set("n", "<C-j>", ":m .+1<CR>==")
+vim.keymap.set("n", "<C-k>", ":m .-2<CR>==")
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv")
+-- estos no funcionan en insert mode porque coinciden con otros maps
+-- vim.keymap.set("i", "<C-j>", ":m .+1<CR>==gi")
+-- vim.keymap.set("i", "<C-k>", ":m .-2<CR>==gi")
+
 -- MIS OVERRIDES DE LAZYVIM
 --
 -- Terminal Mappings

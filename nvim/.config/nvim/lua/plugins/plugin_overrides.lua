@@ -3,13 +3,13 @@ return {
   -- add gruvbox just in case
   -- { "ellisonleao/gruvbox.nvim" },
 
-  -- set neovim theme
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin-mocha",
-    },
-  },
+  -- -- set neovim theme
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     colorscheme = "catppuccin-mocha",
+  --   },
+  -- },
   {
     "folke/which-key.nvim",
     opts = {
@@ -32,6 +32,7 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "cpp",
         "csv",
+        "py",
       })
     end,
   },
@@ -47,4 +48,24 @@ return {
   --     return opts
   --   end,
   --},
+  -- Auto theme detection
+  {
+    "f-person/auto-dark-mode.nvim",
+    priority = 1000,
+    config = function()
+      local auto_dark_mode = require("auto-dark-mode")
+
+      auto_dark_mode.setup({
+        update_interval = 2000,
+        set_dark_mode = function()
+          vim.api.nvim_set_option_value("background", "dark", {})
+          vim.cmd("colorscheme catppuccin-mocha")
+        end,
+        set_light_mode = function()
+          vim.api.nvim_set_option_value("background", "light", {})
+          vim.cmd("colorscheme catppuccin-latte")
+        end,
+      })
+    end,
+  },
 }
